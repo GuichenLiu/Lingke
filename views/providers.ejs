@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵科 - 供应商</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <%- include ('./partials/sidebar')%>
+
+                <%- include ('./partials/topbar')%>
+        </div>
+    </div>
+
+    <main class="lingke-layout-content">
+        <div class="container-fluid">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-lg-12">
+                            <h3 style="float: left;">供应商信息</h3>
+                            <button class="btn btn-primary btn-lg" style="float: right;" data-toggle="modal" data-target="#myModal">新建</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive col-md-12 col-lg-12 mx-auto text-center">
+                <table class="table table-hover">
+                    <tr>
+                        <th style="text-align:center">序号</th>
+                        <th style="text-align:center">名称</th>
+                        <th style="text-align:center">简称</th>
+                        <th style="text-align:center">操作</th>
+                    </tr>
+                    <% for(var i = 0; i < providers.length; i ++){%>
+                        <tr>
+                            <td>
+                                <%-i + 1%>
+                            </td>
+                            <td>
+                                <%-providers[i].Name%>
+                            </td>
+                            <td>
+                                <%-providers[i].ShortName%>
+                            </td>
+                            <td><button class="btn btn-info">查看</button ><button class="btn btn-danger">删除</button ><button class="btn btn-warning">编辑</button></td>
+                        </tr>
+                        <%} %>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            新建供应商
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/providers" method="POST">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label" style="font-weight: bolder;">名称:</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="供应商名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shortName" class="col-form-label" style="font-weight: bolder;">简称:</label>
+                                <input type="text" name="shortName" id="shortName" class="form-control" placeholder="供应商简称" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contract" class="col-form-label" style="font-weight: bolder;">合同签订主体:</label>
+                                <input type="text" name="contract" id="contract" class="form-control" placeholder="合同签订主体" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPerson" class="col-form-label" style="font-weight: bolder;">联系人:</label>
+                                <input type="text" name="contactPerson" id="contactPerson" class="form-control" placeholder="联系人姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-form-label" style="font-weight: bolder;">地址:</label>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="地址" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="number" class="col-form-label" style="font-weight: bolder;">电话:</label>
+                                <div class="input-group" id="telNum">
+                                    <input type="text" name="number" id="number" class="form-control" placeholder="联系人电话" required>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button" title="remove" id="removeNum">-</button>
+                                    </span>
+                                </div>
+                                <button class="btn btn-info btn-sm" type="button" title="add" id="addNum">+</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="QQ" class="col-form-label" style="font-weight: bolder;">QQ:</label>
+                                <input type="text" name="QQ" id="QQ" class="form-control" placeholder="QQ">
+                            </div>
+                            <div class="form-group">
+                                <label for="weChat" class="col-form-label" style="font-weight: bolder;">微信:</label>
+                                <input type="text" name="weChat" id="weChat" class="form-control" placeholder="微信id">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-form-label" style="font-weight: bolder;">邮箱:</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="邮箱" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxNo" class="col-form-label" style="font-weight: bolder;">税号:</label>
+                                <input type="text" name="taxNo" id="taxNo" class="form-control" placeholder="税号" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bankAcc" class="col-form-label" style="font-weight: bolder;">开户账号:</label>
+                                <input type="text" name="bankAcc" id="bankAcc" class="form-control" placeholder="开户账号" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bank" class="col-form-label" style="font-weight: bolder;">开户行:</label>
+                                <input type="text" name="bank" id="bank" class="form-control" placeholder="开户银行" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prepay" class="col-form-label" style="font-weight: bolder;">预支付:</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prepay" checked="true" value="true">是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="prepay" value="false">否
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="terms" class="col-form-label" style="font-weight: bolder;">付款主条款:</label>
+                                <input type="text" name="terms" id="terms" class="form-control" placeholder="付款主条款" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxRate" class="col-form-label" style="font-weight: bolder;">税率:</label>
+                                <!-- <input type="text" name="taxRate" id="taxRate" class="form-control" placeholder="税率"> -->
+                                <!-- <input type="number" value="0.06" data-decimals="2" min="0" max="9" step="0.01" /> -->
+                                <div class="input-group spinner">
+                                    <input type="text" name="taxRate" class="form-control" value="6">
+                                    <!-- <div class="input-group-btn-vertical"> -->
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i>+</button>
+                                        <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i>-</button>
+                                    </span>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentPeriod" class="col-form-label" style="font-weight: bolder;">付款周期:</label>
+                                <input type="text" name="paymentPeriod" id="paymentPeriod" class="form-control" placeholder="付款周期" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="col-form-label" style="font-weight: bolder;">合同起始日期:</label>
+                                <input type="date" name="startDate" id="startDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate" class="col-form-label" style="font-weight: bolder;">合同终止日期:</label>
+                                <input type="date" name="endDate" id="endDate" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                <input type="submit" value="创建" class="btn btn-primary" name="create">
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/main.min.js"></script>
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var MaxInputs = 4; //maximum input boxes allowed  
+            var InputsWrapper = $("#telNum"); //Input boxes wrapper ID  
+            var AddButton = $("#addNum"); //Add button ID  
+
+            var x = InputsWrapper.length; //initlal text box count  
+            var FieldCount = 1; //to keep track of text box added  
+
+            $(AddButton).click(function(e) //on add input button click  
+                {
+                    if (x <= MaxInputs && x > 0) //max input box allowed  
+                    {
+                        FieldCount++; //text box added increment  
+                        //add input box  
+                        $(InputsWrapper).after('<div id="telNum" class="input-group"><input type="text" name="number" id="number" class="form-control" placeholder="联系人电话"><span class="input-group-btn"><button class="btn btn-info" type="button" title="remove" id="removeNum" required>-</button></span></div>');
+                        x++; //text box increment  
+                    }
+                    return false;
+                });
+
+            $("body").on("click", "#removeNum", function(e) { //user click on remove text  
+                if (x > 1) {
+                    $(this).parent().parent('div').remove(); //获取当前元素的父元素的父元素的DIV并删除
+                    x--; //decrement textbox  
+                }
+                return false;
+            })
+        });
+    </script>
+    <script>
+        (function($) {
+            $('.spinner .btn:first-of-type').on('click', function() {
+                if (parseInt($('.spinner input').val(), 10) < 10) {
+                    $('.spinner input').val(parseInt($('.spinner input').val(), 10) + 1);
+                }
+            });
+            $('.spinner .btn:last-of-type').on('click', function() {
+                if (parseInt($('.spinner input').val(), 10) > 0) {
+                    $('.spinner input').val(parseInt($('.spinner input').val(), 10) - 1);
+                }
+            });
+        })(jQuery);
+    </script>
+</body>
+
+</html>

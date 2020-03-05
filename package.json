@@ -1,0 +1,24 @@
+{
+    "name": "linkge",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GuichenLiu/Lingke.git"
+    },
+    "bugs": {
+        "url": "https://github.com/GuichenLiu/Lingke/issues"
+    },
+    "homepage": "https://github.com/GuichenLiu/Lingke#readme",
+    "description": "",
+    "dependencies": {
+        "ejs": "^3.0.1",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.1"
+    }
+}
